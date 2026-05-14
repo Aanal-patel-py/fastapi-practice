@@ -2,19 +2,15 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
 
-URL="postgresql://postgress:123456@localhost:5432/student"
+URL="postgresql://postgres:123456@localhost:5432/student"
 
-db=create_engine(URL)
+engine=create_engine(URL)
 
 SessionLocal=sessionmaker(
-    bind=db,
+    bind=engine,
     autoflush=False,
     autocommit=False
 )
-
-class Base(DeclarativeBase):
-    pass
-
 def get_db():
     db=SessionLocal()
     try:
